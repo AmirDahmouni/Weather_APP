@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
-
 import Header from "./Header"
 import "../styles/WeatherAndForecast.css";
-
 import getAddressOfCoordinates from "../Services/reverseGeocoding";
 import getCoordinatesOfAddress from "../Services/forwardGeocoding";
 import getWeatherAndForecast from "../Services/weatherAndForecast";
@@ -26,40 +24,39 @@ export default function Home() {
     setTimeout(() => setContentState("blank"), 3000);
   }
 
-  function makeRequest({coords}) {
+  function makeRequest({ coords }) {
     setContentState("loading");
-    getAddressOfCoordinates(coords.latitude,coords.longitude)
-    .then((res) => {
-      context.setLocationInfo({
+    const { latitude, longitude } = coords
+    getAddressOfCoordinates(latitude, longitude)
+      .then((res) => {
+        context.setLocationInfo({
           city: res.data.results[0].components.city_district,
           town: res.data.results[0].components.town,
           state: res.data.results[0].components.state_code,
           country: res.data.results[0].components.country_code
         });
-    })
-    .then(() =>
+      })
+      .then(() =>
         setCoordinates({
           lat: coords.latitude,
           lng: coords.longitude
         })
-    )
-    .catch((error) => showWarning());
+      )
+      .catch((error) => showWarning());
   }
 
-  
-
   useEffect(() => {
-    
-    if (navigator.geolocation) 
-      navigator.geolocation.getCurrentPosition(makeRequest, (err)=>alert("ERROR(" + err.code + "): " + err.message));
-    else 
+
+    if (navigator.geolocation)
+      navigator.geolocation.getCurrentPosition(makeRequest, (err) => alert("ERROR(" + err.code + "): " + err.message));
+    else
       alert("Geolocation is not supported by this browser.");
-    
+
   }, []);
 
   useEffect(() => {
     if (address === "") return;
-   
+
     setContentState("loading");
     getCoordinatesOfAddress(address)
       .then((res) => {
@@ -112,7 +109,6 @@ export default function Home() {
           <Header searchCity={searchCity} />
           {Main[contentState]()}
         </>
-        
       </div>
     </div>
   );

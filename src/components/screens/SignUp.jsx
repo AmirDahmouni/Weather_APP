@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import "../styles/form.css"
 import { Singup } from "../Services/userServices"
@@ -12,10 +12,11 @@ export default function SingUp() {
     let history = useHistory();
 
     const submit = async () => {
-        console.log('====================================');
-        console.log(process.env.REACT_APP_URL_API);
-        console.log('====================================');
-        if (password.length > 8 && username.length != 0 && email.length > 8 && password === repassword) {
+        if (
+            password.length > 8 &&
+            username.length !== 0 &&
+            email.length > 8 &&
+            password === repassword) {
             const response = await Singup(email, username, password, repassword)
             if (response.status === 201)
                 history.push("/SignIn");

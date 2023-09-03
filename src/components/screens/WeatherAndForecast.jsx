@@ -1,12 +1,11 @@
 import React from "react";
-
 import Weather from "./Weather";
 import Forecast from "./Forest";
 import GlobalContext from "../../GlobalContext";
 
-function WeatherAndForecast({coordinates}) {
+function WeatherAndForecast({ coordinates }) {
 
-  
+
   const context = React.useContext(GlobalContext)
   const date = dateBuilder(new Date());
   function dateBuilder(d) {
@@ -39,9 +38,9 @@ function WeatherAndForecast({coordinates}) {
     ];
   }
 
-  return ( 
+  return (
     <div className="WeatherAndForecast">
-      <Weather weatherInfo={context.weatherAndForecastInfo} coordinates={coordinates}  date={date[0]} />
+      <Weather weatherInfo={context.weatherAndForecastInfo} coordinates={coordinates} date={date[0]} />
       <div className="WeatherAndForecast__container">
         <Forecast weatherInfo={context.weatherAndForecastInfo.daily[0]} date={date[0]} />
         <Forecast weatherInfo={context.weatherAndForecastInfo.daily[1]} date={date[1]} />

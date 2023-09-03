@@ -1,14 +1,13 @@
 import React, { useState } from "react";
-
 import "../styles/Search.css";
 
 export default function Search({ searchCity }) {
   const [currentCity, setCurrentCity] = useState("");
 
- 
+
   function handleKeyPress(e) {
     if (e.key === "Enter" && currentCity.trim() !== "")
-    searchCity(currentCity);
+      searchCity(currentCity);
   }
 
   return (
@@ -17,11 +16,11 @@ export default function Search({ searchCity }) {
         <input
           className="Search__input"
           value={currentCity}
-          onChange={(e)=>setCurrentCity(e.target.value)}
+          onChange={(e) => setCurrentCity(e.target.value)}
           onKeyPress={handleKeyPress}
         />
       </label>
-      <button className="Search__button" onClick={()=>searchCity(currentCity)}>
+      <button className="Search__button" onClick={() => searchCity(currentCity)}>
         Search
       </button>
     </div>
