@@ -1,6 +1,6 @@
 # 🌦️ Weather App
 
-![Weather App Screenshot](images/weather-app-screenshot.png)  <!-- Make sure to use the correct path -->
+![Weather App Screenshot](public/screen.png)  <!-- Make sure to use the correct path -->
 
 The **[Weather App](https://weather-app-snowy-sigma.vercel.app/)** is an interface-focused project crafted using **CSS** to present user components. Powered by the **OpenWeatherMap API**, it delivers a comprehensive weekly weather forecast.
 
